@@ -1,11 +1,12 @@
-import Rebase from 're-base'
 import firebase from 'firebase/app'
 import 'firebase/database'
+import Rebase from 're-base'
 
 const firebaseApp = firebase.initializeApp({
+  //key
   apiKey: 'xxx',
   authDomain: 'xxx',
-  databaseURL: 'xxx'
+  databaseURL: 'xxx',
 })
 
 const base = Rebase.createClass(firebaseApp.database())
