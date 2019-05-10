@@ -4,9 +4,9 @@ import Rebase from 're-base'
 
 const firebaseApp = firebase.initializeApp({
   //key
-  apiKey: 'xxx',
-  authDomain: 'xxx',
-  databaseURL: 'xxx',
+  apiKey: 'AIzaSyClDcu0HRsK3heVcXa5aCJQhoaVNfAUnS4',
+  authDomain: 'recettes-app-3bdea.firebaseapp.com',
+  databaseURL: 'https://recettes-app-3bdea.firebaseio.com',
 })
 
 const base = Rebase.createClass(firebaseApp.database())

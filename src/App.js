@@ -1,32 +1,40 @@
-import React, { Component } from 'react'
+import React from 'react'
 // CSS
 import './App.css'
+//Firebase
 import Admin from './components/Admin'
 import Card from './components/Card'
 import Header from './components/Header'
-import recettes from './recettes'
-class App extends Component {
-  state = {
-    pseudo: this.props.match.params.pseudo,
-    recettes: {},
-  }
+import withFirebase from './hoc/withFirebase'
 
-  chargerExemple = () => this.setState({ recettes })
+const App = ({
+  match,
+  recettes,
+  ajouterRecette,
+  majRecette,
+  supprimerRecette,
+  chargerExemple,
+}) => {
+  const cards = Object.keys(recettes).map(key => (
+    <Card key={key} details={recettes[key]} />
+  ))
 
-  render() {
-    const cards = Object.keys(this.state.recettes).map(key => (
-      <Card key={key} details={this.state.recettes[key]} />
-    ))
-
-    return (
-      <div className='box'>
-        <Header pseudo={this.state.pseudo} />
-        <h1>Bonjour {this.state.pseudo}</h1>
-        <div className='cards'>{cards}</div>
-        <Admin chargerExemple={this.chargerExemple} />
-      </div>
-    )
-  }
+  return (
+    <div className='box'>
+      <Header pseudo={match.params.pseudo} />
+      <div className='cards'>{cards}</div>
+      <Admin
+        pseudo={match.params.pseudo}
+        recettes={recettes}
+        ajouterRecette={ajouterRecette}
+        majRecette={majRecette}
+        supprimerRecette={supprimerRecette}
+        chargerExemple={chargerExemple}
+      />
+    </div>
+  )
 }
 
-export default App
+const WrappedComponent = withFirebase(App)
+
+export default WrappedComponent
